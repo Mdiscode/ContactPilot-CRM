@@ -1,7 +1,12 @@
 @extends('googleContact/dashboard')
 @section('content')
-   <h1>GoogleSync Page</h1>
 
+
+        <!-- Page Content -->
+        {{-- <main class="flex-1 overflow-y-auto p-6"> --}}
+            {{-- <h1 class="text-2xl font-bold mb-4 text-gray-800">Dashboard</h1> --}}
+            {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> --}}
+                <!-- Example Card -->
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-5">
                     <!-- Total Contacts -->
                     <div class="bg-white p-6 rounded-2xl shadow">
@@ -16,7 +21,7 @@
                         <div>
                           <div class="font-semibold">In Google</div>
                           <div>{{$totalGoogleContacts ?? '0'}}</div>
-                          
+                          {{-- <div>{{print_r($getToken)}}</div> --}}
                         </div>
                       </div>
                     </div>
@@ -70,11 +75,14 @@
                     <div class="bg-white p-6 rounded-2xl shadow">
                       <h3 class="text-gray-500 text-sm font-medium mb-4">Actions</h3>
 
-                      <button  class="w-full bg-black text-white py-2 rounded-lg font-medium mb-2"> <a href="{{route('auth.google')}}">Sync Now</a></button>
-                    
+                      {{-- @if($getToken?->access_token && $getToken?->expires_ac_token && now()->lt($getToken->expires_ac_token)) --}}
+                      <button  class="w-full bg-black text-white py-2 rounded-lg font-medium mb-2"> <a href="{{url('/auth/google')}}">Sync Now</a></button>
+                    {{-- @else --}}
+                    {{-- <button class="w-full bg-black text-white py-2 rounded-lg font-medium mb-2">Sign in</button> --}}
+                    {{-- @endif --}}
                       
-                      <button class="w-full border border-gray-300 text-black py-2 rounded-lg font-medium mb-2"><a href="{{route('db.to.google')}}">Push to Google</a></button>
-                      <button class="w-full border border-gray-300 text-black py-2 rounded-lg font-medium"><a href="{{route('google.to.db')}}">Import from Google</a></button>
+                      <button class="w-full border border-gray-300 text-black py-2 rounded-lg font-medium mb-2"><a href="{{route('contacts.push')}}">Push to Google</a></button>
+                      <button class="w-full border border-gray-300 text-black py-2 rounded-lg font-medium"><a href="{{route('contacts.sync')}}">Import from Google</a></button>
                     </div>
                   </div>
                 
@@ -88,6 +96,6 @@
                     <button>Settings</button>
                   </div>
             </div>
-
- @endsection
- 
+        {{-- </main> --}}
+    {{-- </div>  --}}
+@endsection

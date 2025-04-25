@@ -26,15 +26,13 @@ Route::post('contacts/contactUpdate',[ContactController::class,'Update_Contact']
 Route::view('demo','demo');
 
 
-//----google--auth----
+//----google--auth----demo---------start-------------------------------------------------
 // Route::get('/auth/google', [GoogleSynController::class, 'redirectToGoogle']);
 // Route::get('auth/google/callback', [GoogleSynController::class, 'handleGoogleCallback']);
-
-// routes/web.php
-
 Route::get('/google/sync-to-db', [GoogleSynController::class, 'syncGoogleToDB'])->name('contacts.sync');
 Route::get('/google/sync-to-google', [GoogleSynController::class, 'syncDBToGoogle'])->name('contacts.push');
 
+// -----------------demo--end-------------------------------------------------------------
 
 
 // ---------------services---used--------------------
